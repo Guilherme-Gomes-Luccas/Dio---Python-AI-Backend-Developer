@@ -5,23 +5,15 @@
 # Saques - 3 saques diários com limite de 500 reais
 # Depósito - Apenas um úsuario
 
-# Extrato - Utilizar append para fazer uma lista que recebe tanto os depósitos quanto os saques
-
 saques = ""
 depositos = ""
 extrato = ""
 
 conta = 0
-deposito = 0
+quantidade = 0
+quantidade_saques = 3
 
 options = "1"
-
-#for number in saque:
-#    if "," in number:
-#        print(f"extrato: {float(extrato):.2f}\n")
-#        extrato = ""
-#    else:
-#        extrato += number
 
 while options != "0":
     options = input("""
@@ -36,7 +28,45 @@ while options != "0":
     #################################
     O que deseja fazer: """)
 
-    if options == "1":
-        deposito = int(input("Digite a quantidade do deposito: "))
-        depositos += deposito + ","
-    
+    if options == "0":
+        print("Obrigado por utilizar banco snake!!")
+        break
+    elif options == "1":
+        quantidade = int(input("Digite a quantidade do deposito: "))
+        depositos += str(quantidade) + ","
+        conta += quantidade
+    elif options == "2":
+        if quantidade_saques < 1:
+            print("Quantidade diaria de saques foi alcançada, tente novamente amanhã")
+            continue
+
+        quantidade = int(input("Digite a quantidade do saque: "))
+        if quantidade > conta:
+            print("Quantidade do saque informado é maior que o dinheiro atual na conta")
+            continue
+        else:
+            saques += str(quantidade) + ","
+            conta -= quantidade
+            quantidade_saques -= 1
+    elif options == "3":
+        print(f"Total na conta: {conta:.2f}\n")
+
+        print("Saques:")
+        for number in saques:
+            if "," in number:
+                print(f"R${float(extrato):.2f}")
+                extrato = ""
+            else:
+                extrato += number
+        
+        print("\n\n")
+
+        print("Depositos:")
+        for number in depositos:
+            if "," in number:
+                print(f"R${float(extrato):.2f}")
+                extrato = ""
+            else:
+                extrato += number
+    else:
+        print("Opção não identificada, tente novamente")
