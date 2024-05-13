@@ -45,9 +45,12 @@ while options != "0":
             print("Quantidade do saque informado é maior que o dinheiro atual na conta")
             continue
         else:
-            saques += str(quantidade) + ","
-            conta -= quantidade
-            quantidade_saques -= 1
+            if quantidade > 500:
+                print("Não são aceitados valores acima de 500 reais para saque")
+            else:
+                saques += str(quantidade) + ","
+                conta -= quantidade
+                quantidade_saques -= 1
     elif options == "3":
         print(f"Total na conta: {conta:.2f}\n")
 
