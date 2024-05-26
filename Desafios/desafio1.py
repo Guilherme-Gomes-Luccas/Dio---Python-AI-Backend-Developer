@@ -33,6 +33,8 @@ while options != "0":
         break
     elif options == "1":
         quantidade = int(input("Digite a quantidade do deposito: "))
+        while quantidade < 0:
+            quantidade = int(input("Valor negativo, digite uma quantidade de deposito valida: ")) 
         depositos += str(quantidade) + ","
         conta += quantidade
     elif options == "2":
